@@ -241,3 +241,23 @@ class MeanVariancePortfolio:
 
         return self.portfolio_weights, self.portfolio_returns
 
+
+"""
+Helper Function:
+
+The following functions will help check your solution,
+Please see the following "Performance Check" section
+"""
+
+
+class Helper:
+    def __init__(self):
+        self.eqw = EqualWeightPortfolio("SPY").get_results()
+        self.rp = RiskParityPortfolio("SPY").get_results()
+        self.mv_list = [
+            MeanVariancePortfolio("SPY").get_results(),
+            MeanVariancePortfolio("SPY", gamma=100).get_results(),
+            MeanVariancePortfolio("SPY", lookback=100).get_results(),
+            MeanVariancePortfolio("SPY", lookback=100, gamma=100).get_results(),
+        ]
+
