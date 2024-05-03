@@ -352,3 +352,77 @@ class AssignmentJudge:
             MeanVariancePortfolio("SPY", lookback=100, gamma=100).get_results()[0],
         ]
 
+    def check_dataframe_similarity(self, df1, df2, tolerance=0.01):
+        # Check if the shape, index, and columns of both DataFrames are the same
+        if (
+            df1.shape != df2.shape
+            or not df1.index.equals(df2.index)
+            or not df1.columns.equals(df2.columns)
+        ):
+            return False
+
+        # Compare values with allowed relative difference
+        for column in df1.columns:
+            if (
+                df1[column].dtype.kind in "bifc" and df2[column].dtype.kind in "bifc"
+            ):  # Check only numeric types
+                if not np.isclose(df1[column], df2[column], rtol=tolerance).all():
+                    return False
+            else:
+                if not (df1[column] == df2[column]).all():
+                    return False
+
+        return True
+
+    def compare_dataframe_list(self, std_ans_list, ans_list, tolerance=0.01):
+        if len(std_ans_list) != len(ans_list):
+            raise ValueError("Both lists must have the same number of DataFrames.")
+
+        results = []
+        for df1, df2 in zip(std_ans_list, ans_list):
+            result = self.check_dataframe_similarity(df1, df2, tolerance)
+            results.append(result)
+
+        return results
+
+    def compare_dataframe(self, df1, df2, tolerance=0.01):
+        return self.check_dataframe_similarity(df1, df2, tolerance)
+
+    def check_answer_eqw(self, eqw_dataframe):
+        answer_dataframe = pd.read_pickle(self.eqw_path)
+        if self.compare_dataframe(answer_dataframe, eqw_dataframe):
+            print("Problem 1 Complete - Get 10 Points")
+            return 10
+        else:
+            print("Problem 1 Fail")
+        return 0
+
+    def check_answer_rp(self, rp_dataframe):
+        answer_dataframe = pd.read_pickle(self.rp_path)
+        if self.compare_dataframe(answer_dataframe, rp_dataframe):
+            print("Problem 2 Complete - Get 10 Points")
+            return 10
+        else:
+            print("Problem 2 Fail")
+        return 0
+
+    def check_answer_mv_list(self, mv_list):
+        mv_list_0 = pd.read_pickle(self.mv_list_0_path)
+        mv_list_1 = pd.read_pickle(self.mv_list_1_path)
+        mv_list_2 = pd.read_pickle(self.mv_list_2_path)
+        mv_list_3 = pd.read_pickle(self.mv_list_3_path)
+        answer_list = [mv_list_0, mv_list_1, mv_list_2, mv_list_3]
+        if self.compare_dataframe_list(answer_list, mv_list):
+            print("Problem 3 Complete - Get 15 points")
+            return 15
+        else:
+            print("Problem 3 Fail")
+        return 0
+
+    def check_all_answer(self):
+        score = 0
+        score += self.check_answer_eqw(eqw_dataframe=self.eqw)
+        score += self.check_answer_rp(self.rp)
+        score += self.check_answer_mv_list(self.mv_list)
+        return score
+
