@@ -181,3 +181,39 @@ class AssignmentJudge:
         score += self.check_sharp_ratio_greater_than_spy()
         return score
 
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Introduction to Fintech Assignment 3 Part 12"
+    )
+
+    parser.add_argument(
+        "--score",
+        action="append",
+        help="Score for assignment",
+    )
+
+    parser.add_argument(
+        "--allocation",
+        action="append",
+        help="Allocation for asset",
+    )
+
+    parser.add_argument(
+        "--performance",
+        action="append",
+        help="Performance for portfolio",
+    )
+
+    parser.add_argument(
+        "--report", action="append", help="Report for evaluation metric"
+    )
+
+    parser.add_argument(
+        "--cumulative", action="append", help="Cumulative product result"
+    )
+
+    args = parser.parse_args()
+
+    judge = AssignmentJudge()
+
