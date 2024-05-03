@@ -118,8 +118,8 @@ class RiskParityPortfolio:
         """
         TODO: Complete Task 2 Below
         """
-        
-        
+
+
         """
         TODO: Complete Task 2 Above
         """
@@ -489,3 +489,10 @@ if __name__ == "__main__":
     if args.performance:
         if "mv":
             helper.plot_mean_variance_portfolio_performance()
+
+    """
+    NOTE: For Report Metric
+    """
+    if args.report:
+        if "mv" in args.report:
+            helper.plot_report_metrics()
