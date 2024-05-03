@@ -261,3 +261,23 @@ class Helper:
             MeanVariancePortfolio("SPY", lookback=100, gamma=100).get_results(),
         ]
 
+    def plot_performance(self, strategy_list=None):
+        # Plot cumulative returns
+        _, ax = plt.subplots()
+
+        (1 + df_returns["SPY"]).cumprod().plot(ax=ax, label="SPY")
+        (1 + self.eqw[1]["Portfolio"]).cumprod().plot(ax=ax, label="equal_weight")
+        (1 + self.rp[1]["Portfolio"]).cumprod().plot(ax=ax, label="risk_parity")
+
+        if strategy_list != None:
+            for i, strategy in enumerate(strategy_list):
+                (1 + strategy[1]["Portfolio"]).cumprod().plot(
+                    ax=ax, label=f"strategy {i+1}"
+                )
+
+        ax.set_title("Cumulative Returns")
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Cumulative Returns")
+        ax.legend()
+        plt.show()
+        return None
