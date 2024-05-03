@@ -426,3 +426,37 @@ class AssignmentJudge:
         score += self.check_answer_mv_list(self.mv_list)
         return score
 
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Introduction to Fintech Assignment 3 Part 1"
+    )
+    """
+    NOTE: For Assignment Judge
+    """
+    parser.add_argument(
+        "--score",
+        action="append",
+        help="Score for assignment",
+    )
+
+    parser.add_argument(
+        "--allocation",
+        action="append",
+        help="Allocation for asset",
+    )
+
+    parser.add_argument(
+        "--performance",
+        action="append",
+        help="Performance for portfolio",
+    )
+
+    parser.add_argument(
+        "--report", action="append", help="Report for evaluation metric"
+    )
+
+    args = parser.parse_args()
+
+    judge = AssignmentJudge()
+    helper = Helper()
