@@ -460,3 +460,14 @@ if __name__ == "__main__":
 
     judge = AssignmentJudge()
     helper = Helper()
+
+    if args.score:
+        if ("eqw" in args.score) or ("rp" in args.score) or ("mv" in args.score):
+            if "eqw" in args.score:
+                judge.check_answer_eqw(judge.eqw)
+            if "rp" in args.score:
+                judge.check_answer_rp(judge.rp)
+            if "mv" in args.score:
+                judge.check_answer_mv_list(judge.mv_list)
+        elif "all" in args.score:
+            print(f"==> totoal Score = {judge.check_all_answer()} <==")
