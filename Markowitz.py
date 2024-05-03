@@ -281,3 +281,19 @@ class Helper:
         ax.legend()
         plt.show()
         return None
+
+    def plot_allocation(self, df_weights):
+        df_weights = df_weights.fillna(0).ffill()
+
+        # long only
+        df_weights[df_weights < 0] = 0
+
+        # Plotting
+        _, ax = plt.subplots()
+        df_weights.plot.area(ax=ax)
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Allocation")
+        ax.set_title("Asset Allocation Over Time")
+        plt.show()
+        return None
+
