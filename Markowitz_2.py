@@ -99,3 +99,15 @@ class MyPortfolio:
 
         return self.portfolio_weights, self.portfolio_returns
 
+
+"""
+Assignment Judge
+
+The following functions will help check your solution.
+"""
+
+
+class AssignmentJudge:
+    def __init__(self):
+        self.mp = MyPortfolio(df, "SPY", lookback=375).get_results()
+        self.Bmp = MyPortfolio(Bdf, "SPY", lookback=375).get_results()
