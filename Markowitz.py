@@ -297,3 +297,17 @@ class Helper:
         plt.show()
         return None
 
+    def report_metrics(self):
+        df_bl = pd.DataFrame()
+        df_bl["EQW"] = pd.to_numeric(self.eqw[1]["Portfolio"], errors="coerce")
+        df_bl["RP"] = pd.to_numeric(self.rp[1]["Portfolio"], errors="coerce")
+        df_bl["SPY"] = df_returns["SPY"]
+        for i, strategy in enumerate(self.mv_list):
+            df_bl[f"MV {i+1}"] = pd.to_numeric(
+                strategy[1]["Portfolio"], errors="coerce"
+            )
+            """
+            NOTE: You can add your strategy here.
+            """
+
+        qs.reports.metrics(df_bl, mode="full", display=True)
