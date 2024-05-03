@@ -111,3 +111,17 @@ class AssignmentJudge:
     def __init__(self):
         self.mp = MyPortfolio(df, "SPY", lookback=375).get_results()
         self.Bmp = MyPortfolio(Bdf, "SPY", lookback=375).get_results()
+
+    def plot_performance(self, price, strategy):
+        # Plot cumulative returns
+        _, ax = plt.subplots()
+        returns = price.pct_change().fillna(0)
+        (1 + returns["SPY"]).cumprod().plot(ax=ax, label="SPY")
+        (1 + strategy[1]["Portfolio"]).cumprod().plot(ax=ax, label=f"MyPortfolio")
+
+        ax.set_title("Cumulative Returns")
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Cumulative Returns")
+        ax.legend()
+        plt.show()
+        return None
