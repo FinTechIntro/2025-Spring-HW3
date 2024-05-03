@@ -231,3 +231,9 @@ if __name__ == "__main__":
             judge.plot_allocation(judge.mp[0])
         if "bmp" in args.allocation:
             judge.plot_allocation(judge.Bmp[0])
+
+    if args.performance:
+        if "mp" in args.performance:
+            judge.plot_performance(df, judge.mp)
+        if "bmp" in args.performance:
+            judge.plot_performance(Bdf, judge.Bmp)
