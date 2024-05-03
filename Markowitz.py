@@ -482,3 +482,10 @@ if __name__ == "__main__":
             helper.plot_rp_allocation()
         if "mv" in args.allocation:
             helper.plot_mean_variance_allocation()
+
+    """
+    NOTE: For Performance Check
+    """
+    if args.performance:
+        if "mv":
+            helper.plot_mean_variance_portfolio_performance()
