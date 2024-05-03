@@ -244,3 +244,8 @@ if __name__ == "__main__":
         if "bmp" in args.report:
             judge.report_metrics(Bdf, judge.Bmp, show=True)
 
+    if args.cumulative:
+        if "mp" in args.cumulative:
+            judge.cumulative_product(df)
+        if "bmp" in args.cumulative:
+            judge.cumulative_product(Bdf)
