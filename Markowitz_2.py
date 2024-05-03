@@ -225,3 +225,9 @@ if __name__ == "__main__":
                 judge.check_sharp_ratio_greater_than_spy()
         elif "all" in args.score:
             print(f"==> totoal Score = {judge.check_all_answer()} <==")
+
+    if args.allocation:
+        if "mp" in args.allocation:
+            judge.plot_allocation(judge.mp[0])
+        if "bmp" in args.allocation:
+            judge.plot_allocation(judge.Bmp[0])
