@@ -140,3 +140,15 @@ class AssignmentJudge:
         ax.set_title("Asset Allocation Over Time")
         plt.show()
         return None
+
+    def report_metrics(self, price, strategy, show=False):
+        df_bl = pd.DataFrame()
+        returns = price.pct_change().fillna(0)
+        df_bl["SPY"] = returns["SPY"]
+        df_bl[f"MP"] = pd.to_numeric(strategy[1]["Portfolio"], errors="coerce")
+
+        qs.reports.metrics(df_bl, mode="full", display=show)
+
+        sharpe_ratio = qs.stats.sharpe(df_bl)
+
+        return sharpe_ratio
