@@ -155,3 +155,29 @@ class AssignmentJudge:
 
     def cumulative_product(self, dataframe):
         (1 + dataframe.pct_change().fillna(0)).cumprod().plot()
+
+    def check_sharp_ratio_greater_than_one(self):
+        if self.report_metrics(df, self.mp)[1] > 1:
+            print("Problem 4.1 Success - Get 10 points")
+            return 10
+        else:
+            print("Problem 4.1 Fail")
+        return 0
+
+    def check_sharp_ratio_greater_than_spy(self):
+        if (
+            self.report_metrics(Bdf, self.Bmp)[1]
+            > self.report_metrics(Bdf, self.Bmp)[0]
+        ):
+            print("Problem 4.2 Success - Get 10 points")
+            return 10
+        else:
+            print("Problem 4.2 Fail")
+        return 0
+
+    def check_all_answer(self):
+        score = 0
+        score += self.check_sharp_ratio_greater_than_one()
+        score += self.check_sharp_ratio_greater_than_spy()
+        return score
+
