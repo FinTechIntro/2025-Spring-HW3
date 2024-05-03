@@ -152,3 +152,6 @@ class AssignmentJudge:
         sharpe_ratio = qs.stats.sharpe(df_bl)
 
         return sharpe_ratio
+
+    def cumulative_product(self, dataframe):
+        (1 + dataframe.pct_change().fillna(0)).cumprod().plot()
