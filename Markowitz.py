@@ -327,3 +327,28 @@ class Helper:
 
     def plot_report_metrics(self):
         self.report_metrics()
+
+
+"""
+Assignment Judge
+"""
+
+
+class AssignmentJudge:
+    def __init__(self):
+        self.eqw_path = "./Answer/eqw.pkl"
+        self.rp_path = "./Answer/rp.pkl"
+        self.mv_list_0_path = "./Answer/mv_list_0.pkl"
+        self.mv_list_1_path = "./Answer/mv_list_1.pkl"
+        self.mv_list_2_path = "./Answer/mv_list_2.pkl"
+        self.mv_list_3_path = "./Answer/mv_list_3.pkl"
+
+        self.eqw = EqualWeightPortfolio("SPY").get_results()[0]
+        self.rp = RiskParityPortfolio("SPY").get_results()[0]
+        self.mv_list = [
+            MeanVariancePortfolio("SPY").get_results()[0],
+            MeanVariancePortfolio("SPY", gamma=100).get_results()[0],
+            MeanVariancePortfolio("SPY", lookback=100).get_results()[0],
+            MeanVariancePortfolio("SPY", lookback=100, gamma=100).get_results()[0],
+        ]
+
