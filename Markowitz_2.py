@@ -43,3 +43,59 @@ Bdf = portfolio_data = data.pivot_table(
 )
 df = Bdf.loc["2019-01-01":"2024-04-01"]
 
+"""
+Strategy Creation
+
+Create your own strategy, you can add parameter but please remain "price" and "exclude" unchanged
+"""
+
+
+class MyPortfolio:
+    def __init__(self, price, exclude, lookback=50, gamma=0):
+        self.price = price
+        self.returns = price.pct_change().fillna(0)
+        self.exclude = exclude
+        self.lookback = lookback
+        self.gamma = gamma
+
+    def calculate_weights(self):
+        # Get the assets by excluding the specified column
+        assets = self.price.columns[self.price.columns != self.exclude]
+
+        # Calculate the portfolio weights
+        self.portfolio_weights = pd.DataFrame(
+            index=self.price.index, columns=self.price.columns
+        )
+
+        '''
+        TODO: Complete Task 4 Below
+        '''
+
+        '''
+        TODO: Complete Task 4 Above
+        '''
+
+        self.portfolio_weights.ffill(inplace=True)
+        self.portfolio_weights.fillna(0, inplace=True)
+
+    def calculate_portfolio_returns(self):
+        # Ensure weights are calculated
+        if not hasattr(self, "portfolio_weights"):
+            self.calculate_weights()
+
+        # Calculate the portfolio returns
+        self.portfolio_returns = self.returns.copy()
+        assets = self.price.columns[self.price.columns != self.exclude]
+        self.portfolio_returns["Portfolio"] = (
+            self.portfolio_returns[assets]
+            .mul(self.portfolio_weights[assets])
+            .sum(axis=1)
+        )
+
+    def get_results(self):
+        # Ensure portfolio returns are calculated
+        if not hasattr(self, "portfolio_returns"):
+            self.calculate_portfolio_returns()
+
+        return self.portfolio_weights, self.portfolio_returns
+
