@@ -471,3 +471,14 @@ if __name__ == "__main__":
                 judge.check_answer_mv_list(judge.mv_list)
         elif "all" in args.score:
             print(f"==> totoal Score = {judge.check_all_answer()} <==")
+
+    """
+    NOTE: For Allocation
+    """
+    if args.allocation:
+        if "eqw" in args.allocation:
+            helper.plot_eqw_allocation()
+        if "rp" in args.allocation:
+            helper.plot_rp_allocation()
+        if "mv" in args.allocation:
+            helper.plot_mean_variance_allocation()
