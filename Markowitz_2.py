@@ -237,3 +237,10 @@ if __name__ == "__main__":
             judge.plot_performance(df, judge.mp)
         if "bmp" in args.performance:
             judge.plot_performance(Bdf, judge.Bmp)
+
+    if args.report:
+        if "mp" in args.report:
+            judge.report_metrics(df, judge.mp, show=True)
+        if "bmp" in args.report:
+            judge.report_metrics(Bdf, judge.Bmp, show=True)
+
