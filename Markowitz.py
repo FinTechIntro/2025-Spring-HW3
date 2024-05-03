@@ -311,3 +311,19 @@ class Helper:
             """
 
         qs.reports.metrics(df_bl, mode="full", display=True)
+
+    def plot_mean_variance_portfolio_performance(self):
+        self.plot_performance(self.mv_list)
+
+    def plot_eqw_allocation(self):
+        self.plot_allocation(self.eqw[0])
+
+    def plot_rp_allocation(self):
+        self.plot_allocation(self.rp[0])
+
+    def plot_mean_variance_allocation(self):
+        self.plot_allocation(self.mv_list[0][0])
+        self.plot_allocation(self.mv_list[1][0])
+
+    def plot_report_metrics(self):
+        self.report_metrics()
