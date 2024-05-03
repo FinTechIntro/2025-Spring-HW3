@@ -217,3 +217,11 @@ if __name__ == "__main__":
 
     judge = AssignmentJudge()
 
+    if args.score:
+        if ("one" in args.score) or ("spy" in args.score):
+            if "one" in args.score:
+                judge.check_sharp_ratio_greater_than_one()
+            if "spy" in args.score:
+                judge.check_sharp_ratio_greater_than_spy()
+        elif "all" in args.score:
+            print(f"==> totoal Score = {judge.check_all_answer()} <==")
