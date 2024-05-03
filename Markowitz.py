@@ -66,7 +66,6 @@ class EqualWeightPortfolio:
         """
         TODO: Complete Task 1 Below
         """
-        
 
         """
         TODO: Complete Task 1 Above
@@ -118,7 +117,6 @@ class RiskParityPortfolio:
         """
         TODO: Complete Task 2 Below
         """
-
 
         """
         TODO: Complete Task 2 Above
@@ -191,8 +189,7 @@ class MeanVariancePortfolio:
                 """
                 TODO: Complete Task 3 Below
                 """
-                
-                
+
                 """
                 TODO: Complete Task 3 Below
                 """
