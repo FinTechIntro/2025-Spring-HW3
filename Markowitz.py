@@ -117,7 +117,7 @@ class RiskParityPortfolio:
         """
         TODO: Complete Task 2 Below
         """
-
+        
         """
         TODO: Complete Task 2 Above
         """
@@ -368,7 +368,7 @@ class AssignmentJudge:
             if (
                 df1[column].dtype.kind in "bifc" and df2[column].dtype.kind in "bifc"
             ):  # Check only numeric types
-                if not np.isclose(df1[column], df2[column], rtol=tolerance).all():
+                if not np.isclose(df1[column], df2[column], atol=tolerance).all():
                     return False
             else:
                 if not (df1[column] == df2[column]).all():
@@ -385,7 +385,7 @@ class AssignmentJudge:
             result = self.check_dataframe_similarity(df1, df2, tolerance)
             results.append(result)
 
-        return results
+        return results == [True] * len(results)
 
     def compare_dataframe(self, df1, df2, tolerance=0.01):
         return self.check_dataframe_similarity(df1, df2, tolerance)
