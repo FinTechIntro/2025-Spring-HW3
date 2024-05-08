@@ -51,6 +51,9 @@ Create your own strategy, you can add parameter but please remain "price" and "e
 
 
 class MyPortfolio:
+    '''
+    NOTE: You can modify the initialization function
+    '''
     def __init__(self, price, exclude, lookback=50, gamma=0):
         self.price = price
         self.returns = price.pct_change().fillna(0)
@@ -70,7 +73,7 @@ class MyPortfolio:
         """
         TODO: Complete Task 4 Below
         """
-
+        
         """
         TODO: Complete Task 4 Above
         """
@@ -109,8 +112,8 @@ The following functions will help check your solution.
 
 class AssignmentJudge:
     def __init__(self):
-        self.mp = MyPortfolio(df, "SPY", lookback=375).get_results()
-        self.Bmp = MyPortfolio(Bdf, "SPY", lookback=375).get_results()
+        self.mp = MyPortfolio(df, "SPY").get_results()
+        self.Bmp = MyPortfolio(Bdf, "SPY").get_results()
 
     def plot_performance(self, price, strategy):
         # Plot cumulative returns
@@ -157,6 +160,7 @@ class AssignmentJudge:
         (1 + dataframe.pct_change().fillna(0)).cumprod().plot()
 
     def check_sharp_ratio_greater_than_one(self):
+        if not self.check_portfolio_position(self.mp[0]): return 0
         if self.report_metrics(df, self.mp)[1] > 1:
             print("Problem 4.1 Success - Get 10 points")
             return 10
@@ -165,6 +169,7 @@ class AssignmentJudge:
         return 0
 
     def check_sharp_ratio_greater_than_spy(self):
+        if not self.check_portfolio_position(self.mp[0]): return 0
         if (
             self.report_metrics(Bdf, self.Bmp)[1]
             > self.report_metrics(Bdf, self.Bmp)[0]
@@ -174,6 +179,12 @@ class AssignmentJudge:
         else:
             print("Problem 4.2 Fail")
         return 0
+    
+    def check_portfolio_position(self, portfolio_weights):
+        if (portfolio_weights.sum(axis=1)<=1.01).all():
+            return True
+        print("Portfolio Position Exceeds 1. No Leverage.")
+        return False
 
     def check_all_answer(self):
         score = 0
