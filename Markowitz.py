@@ -394,7 +394,7 @@ class AssignmentJudge:
         answer_dataframe = pd.read_pickle(self.eqw_path)
         if self.compare_dataframe(answer_dataframe, eqw_dataframe):
             print("Problem 1 Complete - Get 10 Points")
-            return 10
+            return 20
         else:
             print("Problem 1 Fail")
         return 0
@@ -403,7 +403,7 @@ class AssignmentJudge:
         answer_dataframe = pd.read_pickle(self.rp_path)
         if self.compare_dataframe(answer_dataframe, rp_dataframe):
             print("Problem 2 Complete - Get 10 Points")
-            return 10
+            return 20
         else:
             print("Problem 2 Fail")
         return 0
@@ -416,7 +416,7 @@ class AssignmentJudge:
         answer_list = [mv_list_0, mv_list_1, mv_list_2, mv_list_3]
         if self.compare_dataframe_list(answer_list, mv_list):
             print("Problem 3 Complete - Get 15 points")
-            return 15
+            return 30
         else:
             print("Problem 3 Fail")
         return 0
