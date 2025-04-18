@@ -196,7 +196,7 @@ class MeanVariancePortfolio:
                 model.setObjective(w.sum(), gp.GRB.MAXIMIZE)
 
                 """
-                TODO: Complete Task 3 Below
+                TODO: Complete Task 3 Above
                 """
                 model.optimize()
 
