@@ -165,7 +165,7 @@ class AssignmentJudge:
             return 0
         if self.report_metrics(df, self.mp)[1] > 1:
             print("Problem 4.1 Success - Get 10 points")
-            return 10
+            return 15
         else:
             print("Problem 4.1 Fail")
         return 0
@@ -178,7 +178,7 @@ class AssignmentJudge:
             > self.report_metrics(Bdf, self.Bmp)[0]
         ):
             print("Problem 4.2 Success - Get 10 points")
-            return 10
+            return 15
         else:
             print("Problem 4.2 Fail")
         return 0
