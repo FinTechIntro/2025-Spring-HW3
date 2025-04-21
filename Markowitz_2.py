@@ -159,7 +159,7 @@ class AssignmentJudge:
         if not self.check_portfolio_position(self.mp[0]):
             return 0
         if self.report_metrics(df, self.mp)[1] > 1:
-            print("Problem 4.1 Success - Get 10 points")
+            print("Problem 4.1 Success - Get 15 points")
             return 15
         else:
             print("Problem 4.1 Fail")
@@ -172,7 +172,7 @@ class AssignmentJudge:
             self.report_metrics(Bdf, self.Bmp)[1]
             > self.report_metrics(Bdf, self.Bmp)[0]
         ):
-            print("Problem 4.2 Success - Get 10 points")
+            print("Problem 4.2 Success - Get 15 points")
             return 15
         else:
             print("Problem 4.2 Fail")
