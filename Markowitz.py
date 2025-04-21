@@ -467,7 +467,7 @@ if __name__ == "__main__":
             if "mv" in args.score:
                 judge.check_answer_mv_list(judge.mv_list)
         elif "all" in args.score:
-            print(f"==> totoal Score = {judge.check_all_answer()} <==")
+            print(f"==> total Score = {judge.check_all_answer()} <==")
 
     """
     NOTE: For Allocation
