@@ -388,7 +388,7 @@ class AssignmentJudge:
     def check_answer_eqw(self, eqw_dataframe):
         answer_dataframe = pd.read_pickle(self.eqw_path)
         if self.compare_dataframe(answer_dataframe, eqw_dataframe):
-            print("Problem 1 Complete - Get 10 Points")
+            print("Problem 1 Complete - Get 20 Points")
             return 20
         else:
             print("Problem 1 Fail")
@@ -397,7 +397,7 @@ class AssignmentJudge:
     def check_answer_rp(self, rp_dataframe):
         answer_dataframe = pd.read_pickle(self.rp_path)
         if self.compare_dataframe(answer_dataframe, rp_dataframe):
-            print("Problem 2 Complete - Get 10 Points")
+            print("Problem 2 Complete - Get 20 Points")
             return 20
         else:
             print("Problem 2 Fail")
@@ -410,7 +410,7 @@ class AssignmentJudge:
         mv_list_3 = pd.read_pickle(self.mv_list_3_path)
         answer_list = [mv_list_0, mv_list_1, mv_list_2, mv_list_3]
         if self.compare_dataframe_list(answer_list, mv_list):
-            print("Problem 3 Complete - Get 15 points")
+            print("Problem 3 Complete - Get 30 points")
             return 30
         else:
             print("Problem 3 Fail")
