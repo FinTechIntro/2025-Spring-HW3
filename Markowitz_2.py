@@ -30,15 +30,12 @@ assets = [
     "XLY",
 ]
 
-data = pd.DataFrame()
+# Initialize Bdf and df
+Bdf = pd.DataFrame()
 for asset in assets:
     raw = yf.download(asset, start="2012-01-01", end="2024-04-01", auto_adjust = False)
-    data[asset] = raw['Adj Close']
+    Bdf[asset] = raw['Adj Close']
 
-# Initialize df and df_returns
-Bdf = data.pivot_table(
-    index="Date", columns="Symbol", values="Adj Close"
-)
 df = Bdf.loc["2019-01-01":"2024-04-01"]
 
 """
@@ -147,11 +144,11 @@ class AssignmentJudge:
         df_bl = pd.DataFrame()
         returns = price.pct_change().fillna(0)
         df_bl["SPY"] = returns["SPY"]
-        df_bl[f"MP"] = pd.to_numeric(strategy[1]["Portfolio"], errors="coerce")
-
-        qs.reports.metrics(df_bl, mode="full", display=show)
-
+        df_bl["MP"] = pd.to_numeric(strategy[1]["Portfolio"], errors="coerce")
         sharpe_ratio = qs.stats.sharpe(df_bl)
+
+        if show == True:
+            qs.reports.metrics(df_bl, mode="full", display=show)
 
         return sharpe_ratio
 
