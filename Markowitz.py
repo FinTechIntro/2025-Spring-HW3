@@ -32,18 +32,13 @@ assets = [
 
 start = "2019-01-01"
 end = "2024-04-01"
-data = pd.DataFrame()
-
-# Fetch the data for each stock and concatenate it to the `data` DataFrame
-for asset in assets:
-    raw = yf.download(asset, start=start, end=end)
-    raw["Symbol"] = asset
-    data = pd.concat([data, raw], axis=0)
 
 # Initialize df and df_returns
-df = portfolio_data = data.pivot_table(
-    index="Date", columns="Symbol", values="Adj Close"
-)
+df = pd.DataFrame()
+for asset in assets:
+    raw = yf.download(asset, start=start, end=end, auto_adjust = False)
+    df[asset] = raw['Adj Close']
+
 df_returns = df.pct_change().fillna(0)
 
 
